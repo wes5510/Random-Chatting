@@ -8,21 +8,19 @@ module.exports = function(grunt){
 			dist: {
 				files: [
 					{
+						'app-dist.js': 'app.js'
+					},
+					{
 						expand: true,
-						cwd: 'server/es6/',
+						cwd: 'src/es6/',
 						src: ['**/*.js'],
-						dest: 'server/dist/'
-					},{ 
-						expand: true,
-						cwd: 'public/static/js/es6/',
-						src: ['**/*.js'],
-						dest: 'public/static/js/dist/'
+						dest: 'src/dist/'
 					}
 				]
 			}
 		},
 		eslint: {
-			target: ['server/es6/**/*.js', 'public/static/js/es6/**/*.js']
+			target: ['app.js', 'src/es6/**/*.js']
 		}
 	});
 
