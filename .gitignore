@@ -1,5 +1,9 @@
 *.log
 node_modules
 *.tmp
-.idea
 resources/app-prd.conf
+
+*-dist.js
+src/dist/
+
+.idea
