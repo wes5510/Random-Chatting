@@ -4,6 +4,6 @@ node_modules
 resources/app-prd.conf
 
 *-dist.js
-src/dist/
+src/dist
 
 .idea
