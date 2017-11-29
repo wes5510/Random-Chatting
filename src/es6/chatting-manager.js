@@ -7,7 +7,7 @@ class ChattingManager{
 				console.log(`?close session(${id}), had error(${had_error})`);
 				let partnerId = this._sessionManager.getPartnerIdById(id);
 				this._sessionManager.destroySessionById(id);
-				this._reconnectPartnerById(partnerId);
+				if(partnerId !== SessionManager.SERVERID)this._reconnectPartnerById(partnerId);
 			},
 			error :(id, error)=>{
 				console.log(`?error(${error}) session(${id})`);
