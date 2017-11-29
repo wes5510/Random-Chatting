@@ -11,7 +11,6 @@ class SessionManager{
 	}
 	setPartnerById(id){
 		let partnerId = this._findPartner();
-		console.log(`setPartner partnerId: ${partnerId}`);
 		if(partnerId){
 			this._partnerMap.set(partnerId, id);
 			this._partnerMap.set(id, partnerId);
@@ -22,7 +21,6 @@ class SessionManager{
 	}
 	_findPartner(){
 		for(let [sessionId, partnerId] of this._partnerMap){
-			console.log(`_findPartner, sessionId: ${sessionId} , partnerId: ${partnerId}`);
 			if(partnerId === SessionManager.SERVERID) return sessionId;
 		}
 		return false;

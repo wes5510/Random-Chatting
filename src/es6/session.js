@@ -5,7 +5,6 @@ class Session{
     this.setEvent(events);
   }
   setEvent(events){
-    console.log(events);
     if(events) {
       for (let eventNameKey in Session.EVENT_NAMES) {
         if (Session.EVENT_NAMES[eventNameKey] === 'close' || Session.EVENT_NAMES[eventNameKey] === 'error' || Session.EVENT_NAMES[eventNameKey] === 'data') {

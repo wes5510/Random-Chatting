@@ -12,13 +12,13 @@ var Server = function () {
 
     this._socket = socket;
     this._chattingManager = new ChattingManager();
+    this._port = Server.port;
+    this._host = Server.host;
+    this._backlog = Server.backlog;
     if (options) {
-      this._port = options[Server.optionNames.port] ? options[Server.optionNames.port] : Server.port;
-      this._host = options[Server.optionNames.host] ? options[Server.optionNames.host] : Server.host;
-      this._backlog = options[Server.optionNames.backlog] ? options[Server.optionNames.backlog] : Server.backlog;
-    } else {
-      this._port = Server.port;
-      this._host = Server.host;
+      if (options[Server.optionNames.port]) this._port = options[Server.optionNames.port];
+      if (options[Server.optionNames.host]) this._host = options[Server.optionNames.host];
+      if (options[Server.optionNames.backlog]) this._backlog = options[Server.optionNames.backlog];
     }
   }
 
@@ -27,11 +27,10 @@ var Server = function () {
     value: function run() {
       var _this = this;
 
-      var self = this;
-      self._socket.listen(self._port, self._host, self._backlog, function () {
-        console.log('server(' + self._socket.address().address + ':' + self._socket.address().port + ') bound');
+      this._socket.listen(this._port, this._host, this._backlog, function () {
+        console.log('server(' + _this._socket.address().address + ':' + _this._socket.address().port + ') bound');
         _this._socket.on('connection', function (client) {
-          self._connection(client);
+          _this._connection(client);
         });
       });
     }
