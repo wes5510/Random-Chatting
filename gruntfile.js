@@ -15,12 +15,18 @@ module.exports = function(grunt){
 						cwd: 'src/es6/',
 						src: ['**/*.js'],
 						dest: 'src/dist/'
+					},
+					{
+						expand: true,
+						cwd: 'resources/es6/',
+						src: ['**/*.js'],
+						dest: 'resources/dist/'
 					}
 				]
 			}
 		},
 		eslint: {
-			target: ['app.js', 'src/es6/**/*.js']
+			target: ['resources/dist/**/*.js', 'app.js', 'src/es6/**/*.js']
 		}
 	});
 

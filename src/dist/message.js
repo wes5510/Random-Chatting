@@ -14,9 +14,24 @@ var Message = function () {
   }
 
   _createClass(Message, [{
+    key: "getTo",
+    value: function getTo() {
+      return this._to;
+    }
+  }, {
+    key: "getFrom",
+    value: function getFrom() {
+      return this._from;
+    }
+  }, {
     key: "getText",
     value: function getText() {
-      return this._text.concat();
+      return this._text;
+    }
+  }, {
+    key: "appendText",
+    value: function appendText(text) {
+      this._text += text;
     }
   }]);
 

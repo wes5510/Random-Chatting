@@ -5,31 +5,41 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Session = function () {
-  function Session(socket) {
+  function Session(socket, events) {
     _classCallCheck(this, Session);
 
     this._id = Session.SEQ++;
     this._socket = socket;
-    this._init();
+    this.setEvent(events);
   }
 
   _createClass(Session, [{
-    key: '_init',
-    value: function _init() {
+    key: 'setEvent',
+    value: function setEvent(events) {
       var _this = this;
 
-      this._socket.on('close', function (had_error) {
-        _this._close.call(had_error);
-      });
-      this._socket.on('error', function (error) {
-        _this._error(error);
-      });
-      this._socket.on('data', function (buf) {
-        _this._data(buf);
-      });
-      this._socket.on('drain', this._drain);
-      this._socket.on('end', this._end);
-      this._socket.on('timeout', this._timeout);
+      console.log(events);
+      if (events) {
+        var _loop = function _loop(eventNameKey) {
+          if (Session.EVENT_NAMES[eventNameKey] === 'close' || Session.EVENT_NAMES[eventNameKey] === 'error' || Session.EVENT_NAMES[eventNameKey] === 'data') {
+            if (events[Session.EVENT_NAMES[eventNameKey]]) _this._socket.on(Session.EVENT_NAMES[eventNameKey], function (data) {
+              events[Session.EVENT_NAMES[eventNameKey]](_this._id, data);
+            });else _this._socket.on(Session.EVENT_NAMES[eventNameKey], function (data) {
+              Session.DEFAULT_EVENT[eventNameKey](_this._id, data);
+            });
+          } else {
+            if (events[Session.EVENT_NAMES[eventNameKey]]) _this._socket.on(Session.EVENT_NAMES[eventNameKey], function () {
+              events[Session.EVENT_NAMES[eventNameKey]](_this._id);
+            });else _this._socket.on(Session.EVENT_NAMES[eventNameKey], function () {
+              Session.DEFAULT_EVENT[eventNameKey](_this._id);
+            });
+          }
+        };
+
+        for (var eventNameKey in Session.EVENT_NAMES) {
+          _loop(eventNameKey);
+        }
+      }
     }
   }, {
     key: 'getId',
@@ -37,51 +47,41 @@ var Session = function () {
       return this._id;
     }
   }, {
-    key: 'send',
-    value: function send(text, callback) {
-      var _this2 = this;
-
-      if (!callback) callback = function callback() {
-        console.log('sended text(' + text + ') to session(' + _this2._id + ')');
-      };
-      this._socket.write(text, Session.ENCODING, callback);
+    key: 'getSocket',
+    value: function getSocket() {
+      return this._socket;
     }
   }, {
-    key: '_close',
-    value: function _close(had_error) {
-      console.log('close session(' + this._id + '), had error(' + had_error + ')');
-    }
-  }, {
-    key: '_error',
-    value: function _error(error) {
-      console.log('error(' + error + ') session(' + this._id + ')');
-    }
-  }, {
-    key: '_data',
-    value: function _data(buf) {
-      console.log('data(' + buf + ') session(' + this._id + ')');
-    }
-  }, {
-    key: '_drain',
-    value: function _drain() {
-      console.log('drain session(' + this._id + ')');
-    }
-  }, {
-    key: '_end',
-    value: function _end() {
-      console.log('end session(' + this._id + ')');
-    }
-  }, {
-    key: '_timeout',
-    value: function _timeout() {
-      console.log('timeout session(' + this._id + ')');
+    key: 'close',
+    value: function close() {
+      if (!this._socket.destroyed) this._socket.destroy();
     }
   }]);
 
   return Session;
 }();
 
-Session.ENCODING = 'utf8';
-Session.SEQ = 0;
+Session.SEQ = 1;
+Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };
+Session.DEFAULT_EVENT = {
+  CLOSE: function CLOSE(id, had_error) {
+    console.log('close session(' + id + '), had error(' + had_error + ')');
+  },
+  ERROR: function ERROR(id, error) {
+    console.log('error(' + error + ') session(' + id + ')');
+  },
+  DATA: function DATA(id, buf) {
+    console.log('data(' + buf + ') session(' + id + ')');
+  },
+  DRAIN: function DRAIN(id) {
+    console.log('drain session(' + id + ')');
+  },
+  END: function END(id) {
+    console.log('end session(' + id + ')');
+  },
+  TIMEOUT: function TIMEOUT(id) {
+    console.log('timeout session(' + id + ')');
+  }
+};
 module.exports = Session;
 //# sourceMappingURL=session.js.map

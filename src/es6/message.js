@@ -4,8 +4,18 @@ class Message{
     this._from = from;
     this._text = text;
   }
+  getTo(){
+    return this._to;
+  }
+  getFrom(){
+    return this._from;
+  }
   getText(){
-    return this._text.concat();
+    return this._text;
+  }
+  appendText(text){
+    this._text += text;
   }
 }
+
 module.exports = Message;
