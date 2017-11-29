@@ -52,10 +52,14 @@ class ChattingManager{
 	}
 	_connectPartnerById(id){
 		let text;
-		if(this._sessionManager.setPartnerById(id))
-			text=`Found user(${this._sessionManager.getPartnerIdById(id)}) to chatting. Enjoy chatting^^\n`;
-		else
+		if(this._sessionManager.setPartnerById(id)){
+			let partnerId = this._sessionManager.getPartnerIdById(id);
+			text=`Found user(${partnerId}) to chatting. Enjoy chatting^^\n`;
+			this._send(new Message(partnerId, SessionManager.SERVERID, `Found user(${id}) to chatting. Enjoy chatting^^\n`));
+		}
+		else{
 			text=ChattingManager.WAITING_TEXT;
+		}
 		this._send(new Message(id, SessionManager.SERVERID, text));
 	}
 	_reconnectPartnerById(id){
