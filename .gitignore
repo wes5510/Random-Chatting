@@ -7,3 +7,5 @@ resources/dist
 src/dist
 
 .idea
+
+**/*tags
