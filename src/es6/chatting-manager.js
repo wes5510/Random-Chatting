@@ -5,7 +5,9 @@ class ChattingManager{
 		this._events = {
 			close :(id, had_error)=>{
 				console.log(`?close session(${id}), had error(${had_error})`);
+				let partnerId = this._sessionManager.getPartnerIdById(id);
 				this._sessionManager.destroySessionById(id);
+				this._reconnectPartnerById(partnerId);
 			},
 			error :(id, error)=>{
 				console.log(`?error(${error}) session(${id})`);
@@ -35,11 +37,8 @@ class ChattingManager{
 		const session = this._sessionManager.addSession(clientSocket, this._events)
 			, welcomeText = `${ChattingManager.WELCOME_TEXT} ${session.getId()} user.\n`
 			, msg = new Message(session.getId(), SessionManager.SERVERID, welcomeText);
-		if(this._sessionManager.setPartner(session))
-			msg.appendText(`Found user(${this._sessionManager.getPartnerIdById(session.getId())}) to chatting. Enjoy chatting^^\n`);
-		else
-			msg.appendText(ChattingManager.WAITING_TEXT);
 		this._send(msg);
+		this._connectPartnerById(session.getId());
 	}
 	_send(msg, callback){
 		if(!callback)
@@ -50,6 +49,18 @@ class ChattingManager{
 			.getSessionById(msg.getTo())
 			.getSocket()
 			.write(`user(${msg.getFrom()}) -> user(${msg.getTo()}): ${msg.getText()}`, ChattingManager.ENCODING, callback);
+	}
+	_connectPartnerById(id){
+		let text;
+		if(this._sessionManager.setPartnerById(id))
+			text=`Found user(${this._sessionManager.getPartnerIdById(id)}) to chatting. Enjoy chatting^^\n`;
+		else
+			text=ChattingManager.WAITING_TEXT;
+		this._send(new Message(id, SessionManager.SERVERID, text));
+	}
+	_reconnectPartnerById(id){
+		this._send(new Message(id, SessionManager.SERVERID, 'your partner is gone. we are finding new partner...'));
+		this._connectPartnerById(id);
 	}
 }
 
