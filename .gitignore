@@ -1,7 +1,7 @@
 *.log
 node_modules
 *.tmp
-resources/app-prd.conf
+resources/dist
 
 *-dist.js
 src/dist
