@@ -2,11 +2,11 @@
 backlog	/mnt/d/data/workspace/learning-js/RanChat/src/es6/server.js	/^Server.optionNames = { port: 'port', host: 'host', backlog: 'backlog' };$/;"	p	language:JavaScript	class:Server.optionNames
 close	/mnt/d/data/workspace/learning-js/RanChat/src/es6/chatting-manager.js	/^		this._events = {$/;"	p	language:JavaScript	class:_events
 CLOSE	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.DEFAULT_EVENT = {$/;"	p	language:JavaScript	class:Session.DEFAULT_EVENT
-CLOSE	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
-DATA	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
-DRAIN	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
-END	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
-ERROR	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+CLOSE	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { $/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+DATA	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^	ERROR: 'error',$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+DRAIN	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^	DATA: 'data',$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+END	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^	DRAIN: 'drain',$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+ERROR	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^	CLOSE: 'close',$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
 host	/mnt/d/data/workspace/learning-js/RanChat/src/es6/server.js	/^Server.optionNames = { port: 'port', host: 'host', backlog: 'backlog' };$/;"	p	language:JavaScript	class:Server.optionNames
 port	/mnt/d/data/workspace/learning-js/RanChat/src/es6/server.js	/^Server.optionNames = { port: 'port', host: 'host', backlog: 'backlog' };$/;"	p	language:JavaScript	class:Server.optionNames
-TIMEOUT	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^Session.EVENT_NAMES = { CLOSE: 'close', ERROR: 'error', DATA: 'data', DRAIN: 'drain', END: 'end', TIMEOUT: 'timeout' };$/;"	p	language:JavaScript	class:Session.EVENT_NAMES
+TIMEOUT	/mnt/d/data/workspace/learning-js/RanChat/src/es6/session.js	/^	END: 'end',$/;"	p	language:JavaScript	class:Session.EVENT_NAMES

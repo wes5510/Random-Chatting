@@ -4,34 +4,38 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var _to = Symbol();
+var _from = Symbol();
+var _text = Symbol();
+
 var Message = function () {
   function Message(to, from, text) {
     _classCallCheck(this, Message);
 
-    this._to = to;
-    this._from = from;
-    this._text = text;
+    this[_to] = to;
+    this[_from] = from;
+    this[_text] = text;
   }
 
   _createClass(Message, [{
-    key: "getTo",
-    value: function getTo() {
-      return this._to;
-    }
-  }, {
-    key: "getFrom",
-    value: function getFrom() {
-      return this._from;
-    }
-  }, {
-    key: "getText",
-    value: function getText() {
-      return this._text;
-    }
-  }, {
     key: "appendText",
     value: function appendText(text) {
-      this._text += text;
+      this[_text] += text;
+    }
+  }, {
+    key: "to",
+    get: function get() {
+      return this[_to];
+    }
+  }, {
+    key: "from",
+    get: function get() {
+      return this[_from];
+    }
+  }, {
+    key: "text",
+    get: function get() {
+      return this[_text];
     }
   }]);
 
