@@ -1,0 +1,11 @@
+*.log
+node_modules
+*.tmp
+resources/dist
+
+*-dist.js
+src/dist
+
+.idea
+
+**/*tags
