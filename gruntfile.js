@@ -8,13 +8,10 @@ module.exports = function(grunt){
 			dist: {
 				files: [
 					{
-						'app-dist.js': 'app.js'
-					},
-					{
 						expand: true,
-						cwd: 'src/es6/',
+						cwd: 'src/main/es6/',
 						src: ['**/*.js'],
-						dest: 'src/dist/'
+						dest: 'src/main/dist/'
 					},
 					{
 						expand: true,
@@ -26,11 +23,20 @@ module.exports = function(grunt){
 			}
 		},
 		eslint: {
-			target: ['resources/dist/**/*.js', 'app.js', 'src/es6/**/*.js']
-		}
+			target: ['resources/dist/**/*.js', 'src/es6/**/*.js']
+		},
+		mocha: {
+      all: {
+        src: ['src/tests/**/*.js'],
+      },
+      options: {
+        run: true
+      }
+    }
 	});
 
 	grunt.loadNpmTasks('grunt-babel');
 	grunt.loadNpmTasks('grunt-eslint');
-	grunt.registerTask('default', ['eslint', 'babel']);
+	grunt.loadNpmTasks('grunt-mocha');
+	grunt.registerTask('default', ['eslint', 'mocha', 'babel']);
 };

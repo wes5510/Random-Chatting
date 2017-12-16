@@ -9,3 +9,5 @@ src/dist
 .idea
 
 **/*tags
+
+goorm.manifest

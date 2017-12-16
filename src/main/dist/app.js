@@ -6,4 +6,4 @@ var net = require('net'),
     config = require('./resources/es6/config.js');
 var server = new Server(svrSocket, { host: config.HOST, port: config.PORT, backlog: config.BACKLOG });
 server.run();
-//# sourceMappingURL=app-dist.js.map
+//# sourceMappingURL=app.js.map
