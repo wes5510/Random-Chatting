@@ -14,6 +14,7 @@ describe('MessageTest', function() {
 
 	afterEach(function() {
 		// excuted after every test
+		
 	});
 
 	describe('#appendText()', function() {
